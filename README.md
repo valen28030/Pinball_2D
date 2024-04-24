@@ -28,7 +28,7 @@ El **Pinball Japonés 2D** es un juego de estilo arcade desarrollado en Unity, q
 
 ## Capturas de Pantalla
 
-[Ver Video](Videos/2024-04-24%2012-58-55.mkv)
+![gif](https://github.com/valen28030/Pinball/assets/167770750/55f53470-21ff-4061-9378-4cb5066dff65)
 
 ## Requisitos del Sistema
 
