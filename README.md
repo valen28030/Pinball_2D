@@ -1,4 +1,4 @@
-# Pinball Japonés 2D
+# Pinball 2D
 
 ## Descripción
 
