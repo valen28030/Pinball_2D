@@ -12,11 +12,41 @@
   <li><strong>Ambientación Japonesa:</strong> Sumérgete en un mundo temático japonés, con gráficos y sonidos que te transportan a un paisaje cultural único.</li>
     &nbsp;
   <li><strong>Sistema de Puntos:</strong> El objetivo del juego es alcanzar los 100 puntos, acumulando puntos al golpear los obstáculos correctos y evitando los que restan.</li>
-   &nbsp;
+&nbsp;
+   
+```sh
+if (puntos >= 100) {
+            SceneManager.LoadScene(0);
+        }
+```
+&nbsp;
   <li><strong>Enemigo que Resta Puntos:</strong> Un enemigo acecha en el tablero, restando 5 puntos cada vez que colisionas con él, lo que añade un desafío adicional al juego.</li>
-    &nbsp;
+&nbsp;
+   
+```sh
+public void RestarScore()
+    {
+        puntos -= 5;
+        if (puntos < 0) {
+            puntos = 0;
+        }
+        puntosTexto.text = "SCORE: " + puntos;
+    }
+```
+&nbsp;
   <li><strong>Peligro del Fuego:</strong> Si caes en el fuego, pierdes automáticamente. Se abrirá el menú de inicio para que puedas decidir si quieres volver a jugar o salir del juego.</li>
-    &nbsp;
+&nbsp;
+   
+```sh
+private void OnTriggerEnter2D(Collider2D collision)
+{
+    if (collision.tag == "pelota")
+    {
+        SceneManager.LoadScene(0);
+    }
+}
+```
+&nbsp;
   <li><strong>Menú Principal y Pantalla de Juego:</strong> El juego cuenta con un menú principal donde puedes empezar a jugar, así como una pantalla del juego donde se desarrolla la acción.</li>
   &nbsp;
     <li><strong>Materiales Físicos y Animaciones:</strong> Los elementos del juego, como las palas, la pelota y los obstáculos, están construidos con materiales físicos para simular un comportamiento realista. Además, incluye animaciones para las palas y los obstáculos que suman y restan puntos, agregando dinamismo al juego.</li>
@@ -48,9 +78,45 @@
 ## Instrucciones de Juego
 <ol align="justify">
     <li><strong>Inicio del Juego:</strong> Al iniciar el juego, serás recibido con el menú principal. Desde aquí, puedes comenzar una nueva partida o salir del juego.</li>
-  &nbsp;
+&nbsp;
+   
+```sh
+public class Menu : MonoBehaviour
+{
+    public void Play ()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    public void Quit()
+    {
+        Application.Quit();
+    }
+}
+```
+&nbsp;
   <li><strong>Jugabilidad:</strong> Una vez que empiezas a jugar, controlarás las palas del pinball con las teclas "A" y "D". Golpea la pelota hacia los obstáculos para sumar puntos y evita los obstáculos enemigos y el fuego.</li>
-      &nbsp;
+&nbsp;
+   
+```sh
+// Detecta la entrada del jugador para mover las paletas
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            rightPalaAnimator.SetInteger("Pressed", 1);
+        }
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+            leftPalaAnimator.SetInteger("Pressed", 1);
+        }
+        else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            rightPalaAnimator.SetInteger("Pressed", 2);
+        }
+        else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            leftPalaAnimator.SetInteger("Pressed", 2);
+        }
+```
+&nbsp;
   <li><strong>Final del Juego:</strong> El juego termina cuando alcanzas los 100 puntos y ganas, o si caes en el fuego y pierdes. En cualquier caso, se abrirá el menú de inicio para que puedas decidir si deseas volver a jugar o salir del juego.</li>
 </ol>
 
